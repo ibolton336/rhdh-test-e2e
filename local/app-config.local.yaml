@@ -1,0 +1,109 @@
+# Copy this file to app-config.local.yaml to override default app settings.
+# Example with GitHub integration referencing external secrets file.
+
+# integrations:
+#   github:
+#     - host: github.com
+#       apps:
+#         - $include: ../extra-files/github-app-credentials.yaml
+
+app:
+  title: Red Hat Developer Hub
+  baseUrl: ${BASE_URL}
+  branding:
+    # If using a different logo, replace these lines with your own image(s)
+    # fullLogo: data:image/svg+xml;base64,your-image-goes-here==
+    # - or -
+    # fullLogo:
+    #   dark: data:image/svg+xml;base64,your-image-in-dark-mode-goes-here==
+    #   light: data:image/svg+xml;base64,your-image-in-light-mode-goes-here==
+    # iconLogo: data:image/svg+xml;base64,your-image-goes-here==
+    fullLogoWidth: ${FULL_LOGO_WIDTH}
+    theme:
+      light:
+        primaryColor: ${PRIMARY_LIGHT_COLOR}
+        headerColor1: ${HEADER_LIGHT_COLOR_1}
+        headerColor2: ${HEADER_LIGHT_COLOR_2}
+        navigationIndicatorColor: ${NAV_INDICATOR_LIGHT_COLOR}
+      dark:
+        primaryColor: ${PRIMARY_DARK_COLOR}
+        headerColor1: ${HEADER_DARK_COLOR_1}
+        headerColor2: ${HEADER_DARK_COLOR_2}
+        navigationIndicatorColor: ${NAV_INDICATOR_DARK_COLOR}
+
+backend:
+  baseUrl: http://localhost:7007
+
+# Tech Radar Plugin Example - uncomment with plugin override to use
+# Replace URL with your own hosted json to visualize data in Tech Radar
+# techRadar:
+#   url: https://raw.githubusercontent.com/backstage/community-plugins/main/workspaces/tech-radar/plugins/tech-radar-common/src/sampleTechRadarResponse.json
+
+# Docker configuration for minikube
+# dockerHub:
+#   host: tcp://127.0.0.1:58727
+#   certPath: /Users/ibolton/.minikube/certs
+#   tlsVerify: true
+
+# MTA Plugin Configuration
+# IMPORTANT: Update the URL below with your actual ngrok tunnel URL
+mta:
+  url: https://YOUR-NGROK-URL.ngrok-free.dev # Replace this with your ngrok URL from ./ngrok-tunnel.sh url
+  providerAuth:
+    realm: tackle # This is correct for local Minikube Keycloak setup
+    secret: backstage-provider-secret
+    clientID: backstage-provider
+
+# Dynamic Plugin Configuration for MTA
+dynamicPlugins:
+  frontend:
+    "backstage-community.backstage-plugin-mta-frontend":
+      entityTabs:
+        - path: /mta
+          title: MTA
+          mountPoint: entity.page.mta
+      mountPoints:
+        - mountPoint: entity.page.mta/cards
+          importName: EntityMTAContent
+          config:
+            layout:
+              gridColumn: "1 / -1"
+              width: "100%"
+            if:
+              allOf:
+                - isKind: component
+                - isType: service
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+  locations:
+    - type: url
+      target: https://github.com/ibolton336/backstage-mta-plugins/blob/main/create-application-template.yaml
+      rules:
+        - allow: [Template]
+
+    - type: file
+      target: create-application-template.yaml
+      rules:
+        - allow: [Template]
+  providers:
+    github:
+      providerId:
+        catalogPath: /catalog-info.yaml
+        organization: ${GITHUB_ORGANIZATION}
+        schedule:
+          frequency: { seconds: 2 }
+          initialDelay: { seconds: 15 }
+          timeout: { seconds: 30 }
+    githubOrg:
+      githubUrl: "https://github.com"
+      id: production
+      orgs:
+        - ${GITHUB_ORGANIZATION}
+      schedule:
+        frequency: { seconds: 2 }
+        initialDelay: { seconds: 15 }
+        timeout: { seconds: 30 }

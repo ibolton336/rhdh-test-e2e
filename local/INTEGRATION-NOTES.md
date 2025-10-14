@@ -15,19 +15,21 @@ This setup integrates the official Red Hat Developer Hub Local (rhdh-local) repo
 ### 2. **Configuration Files**
 
 #### app-config.local.yaml
-- Contains MTA plugin configuration
+- Contains MTA backend configuration only
 - Key settings:
   - `mta.url`: Points to ngrok tunnel URL (exposing local MTA)
   - `mta.providerAuth.realm`: Set to `tackle` (matches Minikube Keycloak)
   - `mta.providerAuth.clientID`: `backstage-provider`
   - `mta.providerAuth.secret`: `backstage-provider-secret`
+- Note: Dynamic plugin configurations should NOT be placed here
 
 #### dynamic-plugins.override.yaml
-- Defines MTA plugins to load:
-  - MTA Frontend Plugin
+- Defines all MTA dynamic plugins to load:
+  - MTA Frontend Plugin (includes UI configuration)
   - MTA Backend Plugin (with embedded migrations)
   - MTA Scaffolder Action Plugin
   - MTA Entity Provider for catalog integration
+- This is the ONLY place where dynamic plugin configurations should be defined
 
 ### 3. **Authentication Flow**
 

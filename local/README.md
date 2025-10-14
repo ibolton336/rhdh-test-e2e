@@ -8,6 +8,8 @@ This setup uses the official [rhdh-local](https://github.com/redhat-developer/rh
 
 - **[Full Walkthrough](RHDH-MTA-Local-Development-Walkthrough.md)** - Comprehensive guide with detailed explanations
 - **[Quick Start Guide](RHDH-MTA-Quick-Start.md)** - Condensed version for experienced users
+- **[Configuration Separation](CONFIG-SEPARATION.md)** - Clarifies where different configs should go
+- **[Integration Notes](INTEGRATION-NOTES.md)** - Technical details about the integration
 
 ## 🚀 Automated Setup
 

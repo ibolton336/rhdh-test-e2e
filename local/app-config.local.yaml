@@ -45,7 +45,7 @@ backend:
 #   certPath: /Users/ibolton/.minikube/certs
 #   tlsVerify: true
 
-# MTA Plugin Configuration
+# MTA Plugin Backend Configuration
 # IMPORTANT: Update the URL below with your actual ngrok tunnel URL
 mta:
   url: https://YOUR-NGROK-URL.ngrok-free.dev # Replace this with your ngrok URL from ./ngrok-tunnel.sh url
@@ -54,25 +54,7 @@ mta:
     secret: backstage-provider-secret
     clientID: backstage-provider
 
-# Dynamic Plugin Configuration for MTA
-dynamicPlugins:
-  frontend:
-    "backstage-community.backstage-plugin-mta-frontend":
-      entityTabs:
-        - path: /mta
-          title: MTA
-          mountPoint: entity.page.mta
-      mountPoints:
-        - mountPoint: entity.page.mta/cards
-          importName: EntityMTAContent
-          config:
-            layout:
-              gridColumn: "1 / -1"
-              width: "100%"
-            if:
-              allOf:
-                - isKind: component
-                - isType: service
+# Note: Dynamic plugin configuration (including MTA frontend) is handled in dynamic-plugins.override.yaml
 catalog:
   import:
     entityFilename: catalog-info.yaml

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(oc login:*)",
+      "Bash(oc projects:*)",
+      "Bash(oc project:*)",
+      "Bash(oc get:*)",
+      "Bash(oc logs:*)",
+      "Bash(oc exec:*)",
+      "Bash(oc expose:*)",
+      "Bash(chmod:*)",
+      "Bash(/tmp/create_keycloak_client.sh:*)",
+      "Bash(oc rollout restart:*)",
+      "Bash(oc describe:*)",
+      "Read(//Users/ibolton/.docker/**)",
+      "Bash(security find-internet-password:*)",
+      "Bash(docker login:*)",
+      "Bash(docker system info:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

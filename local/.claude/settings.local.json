@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/ibolton/Development/community-plugins/workspaces/mta/plugins/mta-frontend/**)",
+      "Bash(chmod:*)",
+      "Bash(./push-mta-plugin.sh:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

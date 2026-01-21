@@ -35,6 +35,8 @@ data:
       - disabled: false
         package: ./dynamic-plugins/dist/backstage-plugin-catalog-backend-module-github-org-dynamic
       - disabled: false
+        package: ./dynamic-plugins/dist/backstage-plugin-auth-backend-module-oauth2-provider-dynamic
+      - disabled: false
         package: 'oci://quay.io/ibolton/backstage-plugin-mta-backend:latest!backstage-community-backstage-plugin-mta-backend'
       - disabled: false
         package: 'oci://quay.io/ibolton/backstage-plugin-mta-frontend:latest!backstage-community-backstage-plugin-mta-frontend'

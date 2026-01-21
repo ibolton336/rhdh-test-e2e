@@ -39,9 +39,9 @@ data:
       - disabled: false
         package: 'oci://quay.io/ibolton/backstage-plugin-mta-frontend:latest!backstage-community-backstage-plugin-mta-frontend'
       - disabled: false
-        package: 'oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-backstage-plugin-catalog-backend-module-mta-entity-provider:next__0.4.0!backstage-community-backstage-plugin-catalog-backend-module-mta-entity-provider'
+        package: 'oci://quay.io/ibolton/backstage-plugin-catalog-backend-module-mta-entity-provider:latest!backstage-community-backstage-plugin-catalog-backend-module-mta-entity-provider'
       - disabled: false
-        package: 'oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-backstage-plugin-scaffolder-backend-module-mta:next__0.5.0!backstage-community-backstage-plugin-scaffolder-backend-module-mta'
+        package: 'oci://quay.io/ibolton/backstage-plugin-scaffolder-backend-module-mta:latest!backstage-community-backstage-plugin-scaffolder-backend-module-mta'
 EOF
 
 # Step 3: Apply Kubernetes resources
